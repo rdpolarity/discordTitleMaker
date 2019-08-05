@@ -8,11 +8,11 @@ export default function Message(props) {
         <Grid item>
           <img src={props.img} className="profilePicture" alt="Avatar" />
         </Grid>
-        <Grid item>
-          <Grid container direction="column" style={{ marginTop: 10 }}>
+        <Grid item xs>
+          <Grid container direction="column">
             <Typography component="p" className="username">
               {props.username}
-              <spam className="subtitle">Today at 8:01 PM</spam>
+              <span className="subtitle">Today at 8:01 PM</span>
             </Typography>
             <Typography component="p" className="text">
               {props.children}
