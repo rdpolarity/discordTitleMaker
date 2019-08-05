@@ -1,0 +1,73 @@
+$profile-size: 50px;
+$background-color: #2f3136;
+$foreground-color: #36393f;
+
+body {
+  background-color: $background-color;
+  margin: 0;
+}
+
+hr {
+  border: 1px solid #3e4147;
+}
+
+.username {
+  color: #ffffff;
+}
+
+.subtitle {
+  display: inline;
+  margin-left: 5px;
+  color: #585a62;
+}
+
+.profilePicture {
+  width: $profile-size;
+  height: $profile-size;
+  border-radius: 50%;
+  margin: 10px;
+}
+
+.message {
+  border-top: 1px solid #3e4147;
+  padding: 10px;
+}
+
+.text {
+  color: #d2ddd4;
+}
+
+.discordFont {
+  font-family: "Whitney", sans-serif;
+}
+
+.container {
+  padding: 20px;
+  margin: 5px;
+  background-color: $foreground-color;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.discordContainer {
+  height: 100vh;
+  width: 100%;
+  color: white;
+}
+
+.bevel {
+  text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9,
+    0 5px 0 #aaa, 0 6px 1px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.1),
+    0 1px 3px rgba(0, 0, 0, 0.3), 0 3px 5px rgba(0, 0, 0, 0.2),
+    0 5px 10px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.2),
+    0 20px 20px rgba(0, 0, 0, 0.15);
+}
+
+.previewText {
+  text-shadow: 2px 2px 4px #111;
+  font-size: 100px;
+}
+
+.field {
+  margin: 20px;
+}
