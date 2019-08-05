@@ -5,6 +5,7 @@ import Message from "../components/Message";
 import { Grid, Button, TextField } from "@material-ui/core";
 import Home from "./_home";
 import { Head } from "next/document";
+import { Preloader, Placeholder } from "react-preloading-screen";
 
 const theme = createMuiTheme({
   palette: {
@@ -17,8 +18,13 @@ const theme = createMuiTheme({
 
 export default function index() {
   return (
-    <MuiThemeProvider theme={theme}>
-      <Home />
-    </MuiThemeProvider>
+    <Preloader style={{ backgroundColor: "black" }}>
+      <MuiThemeProvider theme={theme}>
+        <Home />
+      </MuiThemeProvider>
+      <Placeholder>
+        <img height="200px" src="../static/images/loading.gif" />
+      </Placeholder>
+    </Preloader>
   );
 }

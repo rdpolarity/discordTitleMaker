@@ -10,43 +10,64 @@ import {
   Container,
   InputLabel,
   Input,
-  InputAdornment
+  InputAdornment,
+  Typography
 } from "@material-ui/core";
-import htmlToImage from "html-to-image";
 import download from "downloadjs";
 import { renderToString } from "react-dom/server";
+import svgToImg from "svg-to-image";
 
 export default function Home() {
   const makeTitle = () => {
     return (
-      <span
-        id="title"
-        style={{
-          color: `${color}`,
-          fontSize: "100px",
-          textShadow: "2px 2px 4px #111"
-        }}
-      >
-        {text}
-      </span>
+      <svg width="700px" height={size} className="svgBox">
+        <defs>
+          <filter id="shadow" x="0" y="0" width="200%" height="200%">
+            <feOffset result="offOut" in="SourceGraphic" />
+            <feGaussianBlur result="blurOut" in="offOut" stdDeviation="2" />
+            <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
+          </filter>
+        </defs>
+        <text
+          filter="url(#shadow)"
+          fontFamily="Franklin Gothic Medium"
+          dominantBaseline="central"
+          x="10px"
+          y="50%"
+          fontSize={size}
+          fill={color}
+        >
+          {text}
+        </text>
+      </svg>
     );
   };
-  const titleDownload = e => {
+  const titleDownload = () => {
     let render = renderToString(makeTitle());
     let element = document.createElement("div");
     element.innerHTML = render;
     element = element.firstChild;
-    console.log(element);
+    var svgData = new XMLSerializer().serializeToString(element);
+    var canvas = document.createElement("canvas");
+    canvas.height = size;
+    canvas.width = 700;
+    var ctx = canvas.getContext("2d");
+    var img = document.createElement("img");
+    img.setAttribute("src", "data:image/svg+xml;base64," + btoa(svgData));
 
-    htmlToImage.toPng(element).then(function(dataUrl) {
-      console.log(dataUrl);
-      // download(dataUrl, "my-node.png");
-    });
+    img.onload = function() {
+      ctx.drawImage(img, 0, 0);
+
+      // Now is done
+      download(canvas.toDataURL("image/png"), text + ".png");
+    };
   };
-  const [color, setColor] = useState("#FFF");
+  const [color, setColor] = useState("#7289da");
   const [text, setText] = useState("Title");
+  const [size, setSize] = useState(100);
   const handleText = e => setText(e.target.value);
   const handleColor = e => setColor("#" + e.target.value);
+  const handleSize = e => setSize(e.target.value);
 
   return (
     <Grid
@@ -71,13 +92,21 @@ export default function Home() {
             <TextField
               variant="outlined"
               label="Color Hex"
-              defaultValue="FFF"
+              defaultValue="7289da"
               onChange={handleColor}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">#</InputAdornment>
                 )
               }}
+            />
+          </Grid>
+          <Grid item>
+            <TextField
+              variant="outlined"
+              label="Size"
+              defaultValue="100"
+              onChange={handleSize}
             />
           </Grid>
           <Grid item>
@@ -98,6 +127,9 @@ export default function Home() {
           Bruh <br /> That's a pretty neat title
         </Message>
       </Container>
+      <Typography component="p">
+        Copyright 2019 © <a href="https://aydie.me">aydie.me</a>
+      </Typography>
     </Grid>
   );
 }

@@ -1,6 +1,7 @@
 $profile-size: 50px;
 $background-color: #2f3136;
 $foreground-color: #36393f;
+$primar-color: #7289da;
 
 body {
   background-color: $background-color;
@@ -70,4 +71,14 @@ hr {
 
 .field {
   margin: 20px;
+}
+
+.svgBox {
+  border: 1px solid #3e4147;
+  border-radius: 5px;
+  padding: 0px;
+}
+
+a {
+  color: $primar-color;
 }
