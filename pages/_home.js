@@ -20,7 +20,7 @@ import svgToImg from "svg-to-image";
 export default function Home() {
   const makeTitle = () => {
     return (
-      <svg width="700px" height={size} className="svgBox">
+      <svg width="800px" height={size} className="svgBox">
         <defs>
           <filter id="shadow" x="0" y="0" width="200%" height="200%">
             <feOffset result="offOut" in="SourceGraphic" />
@@ -50,7 +50,7 @@ export default function Home() {
     var svgData = new XMLSerializer().serializeToString(element);
     var canvas = document.createElement("canvas");
     canvas.height = size;
-    canvas.width = 700;
+    canvas.width = 800;
     var ctx = canvas.getContext("2d");
     var img = document.createElement("img");
     img.setAttribute("src", "data:image/svg+xml;base64," + btoa(svgData));
