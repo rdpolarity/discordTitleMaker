@@ -16,7 +16,7 @@
     "@zeit/next-sass": "^1.0.1",
     "downloadjs": "^1.4.7",
     "next": "^9.0.3",
-    "node-sass": "^4.12.0",
+    "node-sass": "^7.0.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-preloading-screen": "^1.0.2",
